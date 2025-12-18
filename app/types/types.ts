@@ -1,4 +1,7 @@
+import { Document, ObjectId } from "mongoose";
+
 export interface IPayload {
+    id: string;
     email: string;
     role: string;
     userId: string;
@@ -31,4 +34,16 @@ export interface ICategory {
     _id: string;
     name: string;
     slug: string;
+}
+
+export interface IUser extends Document {
+    name: string;
+    email: string;
+    password?: string;
+    role: "buyer" | "reseller" | "admin";
+    isBlocked: boolean;
+    resetPasswordToken?: string;
+    resetPasswordExpires?: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }

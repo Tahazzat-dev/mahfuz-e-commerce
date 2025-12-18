@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { IUser } from "../types/types";
 
 const UserSchema = new mongoose.Schema(
     {
@@ -20,5 +21,7 @@ const UserSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.models.User ||
-    mongoose.model("User", UserSchema);
+// 2. Apply the interface to the Model
+const User: mongoose.Model<IUser> = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
+
+export default User;
